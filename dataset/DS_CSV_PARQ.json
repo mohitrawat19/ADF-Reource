@@ -1,0 +1,24 @@
+{
+	"name": "DS_CSV_PARQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_CSV_PARQ",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat(\n'csv/',\nformatDateTime(utcNow(),'yyyy'),'/',\nformatDateTime(utcNow(),'MM'),'/',\nformatDateTime(utcNow(),'dd')\n\n\n\n)\n",
+					"type": "Expression"
+				},
+				"fileSystem": "input"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

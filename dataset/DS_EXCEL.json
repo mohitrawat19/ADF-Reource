@@ -1,0 +1,44 @@
+{
+	"name": "DS_EXCEL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DS_EXCEL_TO PARQ",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "worksheet",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "olist_order_reviews_dataset.xlsx",
+				"folderPath": "excel",
+				"fileSystem": "input"
+			}
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,34 @@
+{
+	"name": "DS_REST_PARQ",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST_PARQ",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "rest",
+				"fileSystem": "input"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "INT64"
+			},
+			{
+				"name": "product_category_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "product_category_name_english",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
