@@ -1,0 +1,44 @@
+{
+	"name": "DS_SFTP_SINK_PARK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SFTP_SINK_PARK",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat(\n    'sftp/',\n    formatDateTime(utcNow(),'yyyy'),'/',\n     formatDateTime(utcNow(),'MM'),'/',\n    formatDateTime(utcNow(),'dd'),'/'\n\n)",
+					"type": "Expression"
+				},
+				"fileSystem": "input"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "geolocation_zip_code_prefix",
+				"type": "UTF8"
+			},
+			{
+				"name": "geolocation_lat",
+				"type": "UTF8"
+			},
+			{
+				"name": "geolocation_lng",
+				"type": "UTF8"
+			},
+			{
+				"name": "geolocation_city",
+				"type": "UTF8"
+			},
+			{
+				"name": "geolocation_state",
+				"type": "UTF8"
+			}
+		]
+	}
+}
