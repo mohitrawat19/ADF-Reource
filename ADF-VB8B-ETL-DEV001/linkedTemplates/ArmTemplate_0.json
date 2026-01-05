@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DS_Json_Parquet_SINK'"
 		},
+		"DS_SFTP_ADLS_PRQ_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DS_SFTP_ADLS_PRQ'"
+		},
 		"LS_BULK_DelimitedText1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_BULK_DelimitedText1'"
@@ -63,13 +67,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_ADLS_PRQ'"
 		},
-		"DS_SFTP_ADLS_PRQ_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'DS_SFTP_ADLS_PRQ'"
-		},
 		"LS_SFTP_SINK_PARK_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_SINK_PARK'"
+		},
+		"LS_SNOWFLAKE_PARQ_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SNOWFLAKE_PARQ'"
 		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -82,6 +86,10 @@
 		"DS_Json_Parquet_SINK_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
+		"DS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
 		},
 		"LS1_RestService1_properties_typeProperties_url": {
 			"type": "string",
@@ -135,13 +143,17 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
 		},
-		"DS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
-		},
 		"LS_SFTP_SINK_PARK_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
+		"LS_SNOWFLAKE_PARK_SINK_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'LS_SNOWFLAKE_PARK_SINK'"
+		},
+		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "DBAZURESNOW"
 		}
 	},
 	"variables": {
@@ -194,6 +206,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('DS_Json_Parquet_SINK_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SFTP_ADLS_PRQ')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DS_SFTP_ADLS_PRQ_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DS_SFTP_ADLS_PRQ_accountKey')]"
 					}
 				}
 			},
@@ -417,23 +446,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_SFTP_ADLS_PRQ')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('DS_SFTP_ADLS_PRQ_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('DS_SFTP_ADLS_PRQ_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/LS_SFTP_SINK_PARK')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -451,102 +463,40 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_BULK_DelimitedText1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/LS_SNOWFLAKE_PARK_SINK')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BULK_DelimitedText1",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "bulkupload",
-						"fileSystem": "input"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "geolocation_zip_code_prefix",
-						"type": "String"
-					},
-					{
-						"name": "geolocation_lat",
-						"type": "String"
-					},
-					{
-						"name": "geolocation_lng",
-						"type": "String"
-					},
-					{
-						"name": "geolocation_city",
-						"type": "String"
-					},
-					{
-						"name": "geolocation_state",
-						"type": "String"
-					}
-				]
+					"sasUri": "[parameters('LS_SNOWFLAKE_PARK_SINK_sasUri')]"
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_BULK_DelimitedText1')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_BULK_DelimitedText_SINK')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/LS_SNOWFLAKE_PARQ')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BULK_DelimitedText_SINK",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "Parquet",
+				"type": "SnowflakeV2",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@concat(\n    'bulk/',\n    formatDateTime(utcNow(),'yyyy'),'/',\n     formatDateTime(utcNow(),'MM'),'/',\n    formatDateTime(utcNow(),'dd'),'/'\n\n)",
-							"type": "Expression"
-						},
-						"fileSystem": "input"
+					"authenticationType": "Basic",
+					"accountIdentifier": "KOYQPDF-NW15823",
+					"user": "MOHIT2018IT043",
+					"database": "[parameters('LS_SNOWFLAKE_PARQ_properties_typeProperties_database')]",
+					"warehouse": "COMPUTE_WH",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SNOWFLAKE_PARQ_password')]"
 					},
-					"compressionCodec": "snappy"
+					"useUtcTimestamps": false
 				},
-				"schema": [
-					{
-						"name": "order_id",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_sequential",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_type",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_installments",
-						"type": "UTF8"
-					},
-					{
-						"name": "payment_value",
-						"type": "UTF8"
-					}
-				]
+				"version": "1.1"
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_BULK_DelimitedText_SINK')]"
-			]
+			"dependsOn": []
 		}
 	]
 }

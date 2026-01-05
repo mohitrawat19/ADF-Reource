@@ -14,6 +14,9 @@
 		"DS_Json_Parquet_SINK_accountKey": {
 			"value": ""
 		},
+		"DS_SFTP_ADLS_PRQ_accountKey": {
+			"value": ""
+		},
 		"LS_BULK_DelimitedText1_accountKey": {
 			"value": ""
 		},
@@ -47,10 +50,10 @@
 		"LS_SFTP_ADLS_PRQ_accountKey": {
 			"value": ""
 		},
-		"DS_SFTP_ADLS_PRQ_accountKey": {
+		"LS_SFTP_SINK_PARK_accountKey": {
 			"value": ""
 		},
-		"LS_SFTP_SINK_PARK_accountKey": {
+		"LS_SNOWFLAKE_PARQ_password": {
 			"value": ""
 		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -61,6 +64,9 @@
 		},
 		"DS_Json_Parquet_SINK_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
+		"DS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
+			"value": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
 		},
 		"LS1_RestService1_properties_typeProperties_url": {
 			"value": "https://retoolapi.dev/HPmJzA/data"
@@ -101,11 +107,14 @@
 		"LS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
 			"value": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
 		},
-		"DS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
-			"value": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
-		},
 		"LS_SFTP_SINK_PARK_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
+		"LS_SNOWFLAKE_PARK_SINK_sasUri": {
+			"value": ""
+		},
+		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
+			"value": "DBAZURESNOW"
 		},
 		"containerUri": {
 			"value": ""
