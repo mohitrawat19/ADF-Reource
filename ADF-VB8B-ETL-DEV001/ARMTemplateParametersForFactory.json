@@ -56,6 +56,12 @@
 		"LS_SNOWFLAKE_PARQ_password": {
 			"value": ""
 		},
+		"LS_SqlServer1_password": {
+			"value": ""
+		},
+		"LS_SQL_PARQUET_accountKey": {
+			"value": ""
+		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
@@ -115,6 +121,18 @@
 		},
 		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 			"value": "DBAZURESNOW"
+		},
+		"LS_SqlServer1_properties_typeProperties_server": {
+			"value": "LAPTOP-DFIJH6N9\\SQLEXPRESS"
+		},
+		"LS_SqlServer1_properties_typeProperties_database": {
+			"value": "vbproject"
+		},
+		"LS_SqlServer1_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS_SQL_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		}
 	}
 }
