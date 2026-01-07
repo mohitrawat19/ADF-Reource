@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB'"
 		},
+		"LS_AZSQL_DB_CSVEXCEL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB_CSVEXCEL'"
+		},
 		"LS_AZSQL_SRCDB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_SRCDB'"
@@ -75,10 +79,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_ADLS_PRQ'"
 		},
-		"LS_SFTP_SINK_PARK_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_SINK_PARK'"
-		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
@@ -108,6 +108,18 @@
 			"defaultValue": "sql-db-vb-dev"
 		},
 		"LS_AZSQL_DB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "access-data-dev"
+		},
+		"LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev"
+		},
+		"LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "access-data-dev"
 		},
@@ -170,10 +182,6 @@
 		"LS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
-		},
-		"LS_SFTP_SINK_PARK_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -280,6 +288,28 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('LS_AZSQL_DB_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_AZSQL_DB_CSVEXCEL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_server')]",
+					"database": "[parameters('LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_AZSQL_DB_CSVEXCEL_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_AZSQL_DB_CSVEXCEL_password')]"
 					}
 				}
 			},
@@ -504,23 +534,6 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SFTP_ADLS_PRQ_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SFTP_SINK_PARK')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SFTP_SINK_PARK_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SFTP_SINK_PARK_accountKey')]"
 					}
 				}
 			},
