@@ -17,6 +17,12 @@
 		"DS_SFTP_ADLS_PRQ_accountKey": {
 			"value": ""
 		},
+		"LS_AZSQL_DB_password": {
+			"value": ""
+		},
+		"LS_AZSQL_SRCDB_password": {
+			"value": ""
+		},
 		"LS_BULK_DelimitedText1_accountKey": {
 			"value": ""
 		},
@@ -56,10 +62,10 @@
 		"LS_SNOWFLAKE_PARQ_password": {
 			"value": ""
 		},
-		"LS_SqlServer1_password": {
+		"LS_SQL_PARQUET_accountKey": {
 			"value": ""
 		},
-		"LS_SQL_PARQUET_accountKey": {
+		"LS_SqlServer1_password": {
 			"value": ""
 		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -76,6 +82,24 @@
 		},
 		"LS1_RestService1_properties_typeProperties_url": {
 			"value": "https://retoolapi.dev/HPmJzA/data"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_server": {
+			"value": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_database": {
+			"value": "sql-db-vb-dev"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_userName": {
+			"value": "access-data-dev"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_server": {
+			"value": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_database": {
+			"value": "sql-db-vb-dev"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_userName": {
+			"value": "access-data-dev"
 		},
 		"LS_BULK_DelimitedText1_properties_typeProperties_url": {
 			"value": "https://adlsdevisionboardraw011.dfs.core.windows.net/"
@@ -122,6 +146,9 @@
 		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 			"value": "DBAZURESNOW"
 		},
+		"LS_SQL_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
 		"LS_SqlServer1_properties_typeProperties_server": {
 			"value": "LAPTOP-DFIJH6N9\\SQLEXPRESS"
 		},
@@ -130,9 +157,6 @@
 		},
 		"LS_SqlServer1_properties_typeProperties_userName": {
 			"value": "sa"
-		},
-		"LS_SQL_PARQUET_properties_typeProperties_url": {
-			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

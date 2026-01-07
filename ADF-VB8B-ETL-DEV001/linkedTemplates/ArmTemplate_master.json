@@ -23,6 +23,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DS_SFTP_ADLS_PRQ'"
 		},
+		"LS_AZSQL_DB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB'"
+		},
+		"LS_AZSQL_SRCDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQL_SRCDB'"
+		},
 		"LS_BULK_DelimitedText1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_BULK_DelimitedText1'"
@@ -75,13 +83,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SNOWFLAKE_PARQ'"
 		},
-		"LS_SqlServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_SqlServer1'"
-		},
 		"LS_SQL_PARQUET_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SQL_PARQUET'"
+		},
+		"LS_SqlServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SqlServer1'"
 		},
 		"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -102,6 +110,30 @@
 		"LS1_RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://retoolapi.dev/HPmJzA/data"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev"
+		},
+		"LS_AZSQL_DB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "access-data-dev"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev"
+		},
+		"LS_AZSQL_SRCDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "access-data-dev"
 		},
 		"LS_BULK_DelimitedText1_properties_typeProperties_url": {
 			"type": "string",
@@ -163,6 +195,10 @@
 			"type": "string",
 			"defaultValue": "DBAZURESNOW"
 		},
+		"LS_SQL_PARQUET_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
+		},
 		"LS_SqlServer1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "LAPTOP-DFIJH6N9\\SQLEXPRESS"
@@ -174,10 +210,6 @@
 		"LS_SqlServer1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "sa"
-		},
-		"LS_SQL_PARQUET_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -218,6 +250,12 @@
 					"DS_SFTP_ADLS_PRQ_accountKey": {
 						"value": "[parameters('DS_SFTP_ADLS_PRQ_accountKey')]"
 					},
+					"LS_AZSQL_DB_password": {
+						"value": "[parameters('LS_AZSQL_DB_password')]"
+					},
+					"LS_AZSQL_SRCDB_password": {
+						"value": "[parameters('LS_AZSQL_SRCDB_password')]"
+					},
 					"LS_BULK_DelimitedText1_accountKey": {
 						"value": "[parameters('LS_BULK_DelimitedText1_accountKey')]"
 					},
@@ -254,9 +292,6 @@
 					"LS_SFTP_SINK_PARK_accountKey": {
 						"value": "[parameters('LS_SFTP_SINK_PARK_accountKey')]"
 					},
-					"LS_SNOWFLAKE_PARQ_password": {
-						"value": "[parameters('LS_SNOWFLAKE_PARQ_password')]"
-					},
 					"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -271,6 +306,24 @@
 					},
 					"LS1_RestService1_properties_typeProperties_url": {
 						"value": "[parameters('LS1_RestService1_properties_typeProperties_url')]"
+					},
+					"LS_AZSQL_DB_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZSQL_DB_properties_typeProperties_server')]"
+					},
+					"LS_AZSQL_DB_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZSQL_DB_properties_typeProperties_database')]"
+					},
+					"LS_AZSQL_DB_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZSQL_DB_properties_typeProperties_userName')]"
+					},
+					"LS_AZSQL_SRCDB_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZSQL_SRCDB_properties_typeProperties_server')]"
+					},
+					"LS_AZSQL_SRCDB_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZSQL_SRCDB_properties_typeProperties_database')]"
+					},
+					"LS_AZSQL_SRCDB_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZSQL_SRCDB_properties_typeProperties_userName')]"
 					},
 					"LS_BULK_DelimitedText1_properties_typeProperties_url": {
 						"value": "[parameters('LS_BULK_DelimitedText1_properties_typeProperties_url')]"
@@ -310,12 +363,6 @@
 					},
 					"LS_SFTP_SINK_PARK_properties_typeProperties_url": {
 						"value": "[parameters('LS_SFTP_SINK_PARK_properties_typeProperties_url')]"
-					},
-					"LS_SNOWFLAKE_PARK_SINK_sasUri": {
-						"value": "[parameters('LS_SNOWFLAKE_PARK_SINK_sasUri')]"
-					},
-					"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
-						"value": "[parameters('LS_SNOWFLAKE_PARQ_properties_typeProperties_database')]"
 					}
 				}
 			},
@@ -335,23 +382,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SNOWFLAKE_PARQ_password": {
+						"value": "[parameters('LS_SNOWFLAKE_PARQ_password')]"
+					},
 					"LS_SQL_PARQUET_accountKey": {
 						"value": "[parameters('LS_SQL_PARQUET_accountKey')]"
 					},
-					"LS_SqlServer1_password": {
-						"value": "[parameters('LS_SqlServer1_password')]"
+					"LS_SNOWFLAKE_PARK_SINK_sasUri": {
+						"value": "[parameters('LS_SNOWFLAKE_PARK_SINK_sasUri')]"
+					},
+					"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
+						"value": "[parameters('LS_SNOWFLAKE_PARQ_properties_typeProperties_database')]"
 					},
 					"LS_SQL_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SQL_PARQUET_properties_typeProperties_url')]"
-					},
-					"LS_SqlServer1_properties_typeProperties_server": {
-						"value": "[parameters('LS_SqlServer1_properties_typeProperties_server')]"
-					},
-					"LS_SqlServer1_properties_typeProperties_database": {
-						"value": "[parameters('LS_SqlServer1_properties_typeProperties_database')]"
-					},
-					"LS_SqlServer1_properties_typeProperties_userName": {
-						"value": "[parameters('LS_SqlServer1_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -372,6 +416,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"LS_SqlServer1_password": {
+						"value": "[parameters('LS_SqlServer1_password')]"
+					},
+					"LS_SqlServer1_properties_typeProperties_server": {
+						"value": "[parameters('LS_SqlServer1_properties_typeProperties_server')]"
+					},
+					"LS_SqlServer1_properties_typeProperties_database": {
+						"value": "[parameters('LS_SqlServer1_properties_typeProperties_database')]"
+					},
+					"LS_SqlServer1_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SqlServer1_properties_typeProperties_userName')]"
 					}
 				}
 			},
