@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DS_SFTP_ADLS_PRQ'"
 		},
+		"LS_AZSQLDB_CSV_META_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQLDB_CSV_META'"
+		},
 		"LS_AZSQL_DB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB'"
@@ -114,6 +118,18 @@
 		"LS1_RestService1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://retoolapi.dev/HPmJzA/data"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "access-data-dev"
 		},
 		"LS_AZSQL_DB_properties_typeProperties_server": {
 			"type": "string",
@@ -326,7 +342,7 @@
 							"source": {
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
-									"value": "SELECT DISTINCT L2_switch_type\nFROM dbo.vb_tbl_job a JOIN\ndbo.vb_tbl_trigger b ON a.trigger_id=b.trigger_id\nWHERE b.trigger_name='@(pipeline().parameters.Trigger)'",
+									"value": "SELECT DISTINCT L2_switch_type\nFROM dbo.vb_tbl_job a JOIN\ndbo.vb_tbl_trigger b ON a.trigger_id=b.trigger_id\nWHERE b.trigger_name='@{pipeline().parameters.Trigger}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
@@ -458,7 +474,7 @@
 							"source": {
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
-									"value": "SELECT DISTINCT L3_switch_type\nFROM dbo.vb_tbl_job a JOIN\ndbo.vb_tbl_trigger b ON a.trigger_id=b.trigger_id\nWHERE b.trigger_name='@(pipeline().parameters.Trigger)'",
+									"value": "SELECT DISTINCT L3_switch_type\nFROM dbo.vb_tbl_job a JOIN\ndbo.vb_tbl_trigger b ON a.trigger_id=b.trigger_id\nWHERE b.trigger_name='@{pipeline().parameters.Trigger}'",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
@@ -506,7 +522,12 @@
 													"type": "PipelineReference"
 												},
 												"waitOnCompletion": true,
-												"parameters": {}
+												"parameters": {
+													"Trigger": {
+														"value": "@pipeline().parameters.Trigger",
+														"type": "Expression"
+													}
+												}
 											}
 										}
 									]
@@ -704,6 +725,41 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "LKUP_JOB_DETAILS",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[vb_get_job_dtls]",
+								"storedProcedureParameters": {
+									"Triggername": {
+										"type": "String",
+										"value": {
+											"value": "@pipeline().parameters.Trigger",
+											"type": "Expression"
+										}
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "DS_AZSQLDB_CSV",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
 					}
 				],
 				"policy": {
@@ -724,7 +780,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_CSV_PARQUET')]",
-				"[concat(variables('factoryId'), '/datasets/DS_CSV_PARQ')]"
+				"[concat(variables('factoryId'), '/datasets/DS_CSV_PARQ')]",
+				"[concat(variables('factoryId'), '/datasets/DS_AZSQLDB_CSV')]"
 			]
 		},
 		{
@@ -1276,6 +1333,24 @@
 				"[concat(variables('factoryId'), '/datasets/DS_AZSQL_DB_CSVEXCEL')]",
 				"[concat(variables('factoryId'), '/pipelines/PL_CSV')]",
 				"[concat(variables('factoryId'), '/pipelines/PL_EXCEL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_AZSQLDB_CSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AZSQLDB_CSV_META",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AZSQLDB_CSV_META')]"
 			]
 		},
 		{
@@ -2176,6 +2251,28 @@
 					"url": "[parameters('LS1_RestService1_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_AZSQLDB_CSV_META')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('LS_AZSQLDB_CSV_META_properties_typeProperties_server')]",
+					"database": "[parameters('LS_AZSQLDB_CSV_META_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_AZSQLDB_CSV_META_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_AZSQLDB_CSV_META_password')]"
+					}
 				}
 			},
 			"dependsOn": []

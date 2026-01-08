@@ -17,6 +17,9 @@
 		"DS_SFTP_ADLS_PRQ_accountKey": {
 			"value": ""
 		},
+		"LS_AZSQLDB_CSV_META_password": {
+			"value": ""
+		},
 		"LS_AZSQL_DB_password": {
 			"value": ""
 		},
@@ -85,6 +88,15 @@
 		},
 		"LS1_RestService1_properties_typeProperties_url": {
 			"value": "https://retoolapi.dev/HPmJzA/data"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_server": {
+			"value": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_database": {
+			"value": "sql-db-vb-dev"
+		},
+		"LS_AZSQLDB_CSV_META_properties_typeProperties_userName": {
+			"value": "access-data-dev"
 		},
 		"LS_AZSQL_DB_properties_typeProperties_server": {
 			"value": "sql-server-vb-dev.database.windows.net"
