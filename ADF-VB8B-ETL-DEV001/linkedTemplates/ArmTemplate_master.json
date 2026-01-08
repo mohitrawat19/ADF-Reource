@@ -243,6 +243,10 @@
 			"type": "string",
 			"defaultValue": "sa"
 		},
+		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
+			"type": "string",
+			"defaultValue": "Tr_sample_csv"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -484,6 +488,9 @@
 					},
 					"LS_SqlServer1_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SqlServer1_properties_typeProperties_userName')]"
+					},
+					"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
+						"value": "[parameters('Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger')]"
 					}
 				}
 			},
