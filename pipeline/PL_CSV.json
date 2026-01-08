@@ -130,7 +130,7 @@
 					"storedProcedureParameters": {
 						"jobid": {
 							"value": {
-								"value": "jobid @activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
 								"type": "Expression"
 							},
 							"type": "Int32"
@@ -194,7 +194,7 @@
 						},
 						"jobid": {
 							"value": {
-								"value": "jobid @activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
+								"value": "@activity('LKUP_JOB_DETAILS').output.firstRow.jobid",
 								"type": "Expression"
 							},
 							"type": "Int32"
