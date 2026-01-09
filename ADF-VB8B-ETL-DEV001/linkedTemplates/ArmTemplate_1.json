@@ -19,9 +19,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_SINK_PARK'"
 		},
+		"LS_SNOWFLAKE_BLOB_PARQ_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SNOWFLAKE_BLOB_PARQ'"
+		},
 		"LS_SNOWFLAKE_PARQ_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SNOWFLAKE_PARQ'"
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SNOWFLAKE_SINK_PARQ'"
 		},
 		"LS_SQL_PARQUET_accountKey": {
 			"type": "secureString",
@@ -46,6 +54,10 @@
 		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "DBAZURESNOW"
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
 		"LS_SQL_PARQUET_properties_typeProperties_url": {
 			"type": "string",
@@ -108,6 +120,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SNOWFLAKE_BLOB_PARQ')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('LS_SNOWFLAKE_BLOB_PARQ_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SNOWFLAKE_PARK_SINK')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -144,6 +169,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SNOWFLAKE_SINK_PARQ')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SNOWFLAKE_SINK_PARQ_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SQL_PARQUET')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -167,18 +209,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
 			},
 			"dependsOn": []
 		},
@@ -521,112 +551,6 @@
 						"type": "UTF8"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_Json')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_Json",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "jsondata",
-						"fileSystem": "input"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"_id": {
-							"type": "string"
-						},
-						"index": {
-							"type": "integer"
-						},
-						"guid": {
-							"type": "string"
-						},
-						"isActive": {
-							"type": "boolean"
-						},
-						"balance": {
-							"type": "string"
-						},
-						"picture": {
-							"type": "string"
-						},
-						"age": {
-							"type": "integer"
-						},
-						"eyeColor": {
-							"type": "string"
-						},
-						"name": {
-							"type": "string"
-						},
-						"gender": {
-							"type": "string"
-						},
-						"company": {
-							"type": "string"
-						},
-						"email": {
-							"type": "string"
-						},
-						"phone": {
-							"type": "string"
-						},
-						"address": {
-							"type": "string"
-						},
-						"about": {
-							"type": "string"
-						},
-						"registered": {
-							"type": "string"
-						},
-						"latitude": {
-							"type": "number"
-						},
-						"longitude": {
-							"type": "number"
-						},
-						"tags": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						},
-						"friends": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"id": {
-										"type": "integer"
-									},
-									"name": {
-										"type": "string"
-									}
-								}
-							}
-						},
-						"greeting": {
-							"type": "string"
-						},
-						"favoriteFruit": {
-							"type": "string"
-						}
-					}
-				}
 			},
 			"dependsOn": []
 		}

@@ -91,9 +91,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SFTP_SINK_PARK'"
 		},
+		"LS_SNOWFLAKE_BLOB_PARQ_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SNOWFLAKE_BLOB_PARQ'"
+		},
 		"LS_SNOWFLAKE_PARQ_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SNOWFLAKE_PARQ'"
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SNOWFLAKE_SINK_PARQ'"
 		},
 		"LS_SQL_PARQUET_accountKey": {
 			"type": "secureString",
@@ -242,6 +250,10 @@
 		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "DBAZURESNOW"
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
 		"LS_SQL_PARQUET_properties_typeProperties_url": {
 			"type": "string",
@@ -465,8 +477,14 @@
 					"LS_SFTP_SINK_PARK_accountKey": {
 						"value": "[parameters('LS_SFTP_SINK_PARK_accountKey')]"
 					},
+					"LS_SNOWFLAKE_BLOB_PARQ_connectionString": {
+						"value": "[parameters('LS_SNOWFLAKE_BLOB_PARQ_connectionString')]"
+					},
 					"LS_SNOWFLAKE_PARQ_password": {
 						"value": "[parameters('LS_SNOWFLAKE_PARQ_password')]"
+					},
+					"LS_SNOWFLAKE_SINK_PARQ_accountKey": {
+						"value": "[parameters('LS_SNOWFLAKE_SINK_PARQ_accountKey')]"
 					},
 					"LS_SQL_PARQUET_accountKey": {
 						"value": "[parameters('LS_SQL_PARQUET_accountKey')]"
@@ -485,6 +503,9 @@
 					},
 					"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 						"value": "[parameters('LS_SNOWFLAKE_PARQ_properties_typeProperties_database')]"
+					},
+					"LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url": {
+						"value": "[parameters('LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url')]"
 					},
 					"LS_SQL_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SQL_PARQUET_properties_typeProperties_url')]"

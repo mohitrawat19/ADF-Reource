@@ -68,7 +68,13 @@
 		"LS_SFTP_SINK_PARK_accountKey": {
 			"value": ""
 		},
+		"LS_SNOWFLAKE_BLOB_PARQ_connectionString": {
+			"value": ""
+		},
 		"LS_SNOWFLAKE_PARQ_password": {
+			"value": ""
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_accountKey": {
 			"value": ""
 		},
 		"LS_SQL_PARQUET_accountKey": {
@@ -181,6 +187,9 @@
 		},
 		"LS_SNOWFLAKE_PARQ_properties_typeProperties_database": {
 			"value": "DBAZURESNOW"
+		},
+		"LS_SNOWFLAKE_SINK_PARQ_properties_typeProperties_url": {
+			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
 		},
 		"LS_SQL_PARQUET_properties_typeProperties_url": {
 			"value": "https://adlsdevvbsorce011.dfs.core.windows.net/"
