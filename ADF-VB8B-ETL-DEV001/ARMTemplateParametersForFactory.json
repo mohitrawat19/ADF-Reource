@@ -20,6 +20,9 @@
 		"LS_AZSQLDB_CSV_META_password": {
 			"value": ""
 		},
+		"LS_AZSQLDB_METADATA_password": {
+			"value": ""
+		},
 		"LS_AZSQL_DB_password": {
 			"value": ""
 		},
@@ -96,6 +99,15 @@
 			"value": "sql-db-vb-dev"
 		},
 		"LS_AZSQLDB_CSV_META_properties_typeProperties_userName": {
+			"value": "access-data-dev"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_server": {
+			"value": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_database": {
+			"value": "sql-db-vb-dev"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_userName": {
 			"value": "access-data-dev"
 		},
 		"LS_AZSQL_DB_properties_typeProperties_server": {
@@ -184,6 +196,9 @@
 		},
 		"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
 			"value": "Tr_sample_csv"
+		},
+		"Trigger_Excel_properties_PL1_MASTER_parameters_Trigger": {
+			"value": "Tr_sample_excel"
 		}
 	}
 }

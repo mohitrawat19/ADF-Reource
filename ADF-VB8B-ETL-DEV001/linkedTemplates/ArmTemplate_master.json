@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQLDB_CSV_META'"
 		},
+		"LS_AZSQLDB_METADATA_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZSQLDB_METADATA'"
+		},
 		"LS_AZSQL_DB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_AZSQL_DB'"
@@ -128,6 +132,18 @@
 			"defaultValue": "sql-db-vb-dev"
 		},
 		"LS_AZSQLDB_CSV_META_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "access-data-dev"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-server-vb-dev.database.windows.net"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-vb-dev"
+		},
+		"LS_AZSQLDB_METADATA_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "access-data-dev"
 		},
@@ -247,6 +263,10 @@
 			"type": "string",
 			"defaultValue": "Tr_sample_csv"
 		},
+		"Trigger_Excel_properties_PL1_MASTER_parameters_Trigger": {
+			"type": "string",
+			"defaultValue": "Tr_sample_excel"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -289,6 +309,9 @@
 					"LS_AZSQLDB_CSV_META_password": {
 						"value": "[parameters('LS_AZSQLDB_CSV_META_password')]"
 					},
+					"LS_AZSQLDB_METADATA_password": {
+						"value": "[parameters('LS_AZSQLDB_METADATA_password')]"
+					},
 					"LS_AZSQL_DB_password": {
 						"value": "[parameters('LS_AZSQL_DB_password')]"
 					},
@@ -325,9 +348,6 @@
 					"LS_REST_PARQUET_accountKey": {
 						"value": "[parameters('LS_REST_PARQUET_accountKey')]"
 					},
-					"LS_SCV_accountKey": {
-						"value": "[parameters('LS_SCV_accountKey')]"
-					},
 					"DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('DS_EXCEL_AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -351,6 +371,15 @@
 					},
 					"LS_AZSQLDB_CSV_META_properties_typeProperties_userName": {
 						"value": "[parameters('LS_AZSQLDB_CSV_META_properties_typeProperties_userName')]"
+					},
+					"LS_AZSQLDB_METADATA_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZSQLDB_METADATA_properties_typeProperties_server')]"
+					},
+					"LS_AZSQLDB_METADATA_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZSQLDB_METADATA_properties_typeProperties_database')]"
+					},
+					"LS_AZSQLDB_METADATA_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZSQLDB_METADATA_properties_typeProperties_userName')]"
 					},
 					"LS_AZSQL_DB_properties_typeProperties_server": {
 						"value": "[parameters('LS_AZSQL_DB_properties_typeProperties_server')]"
@@ -408,9 +437,6 @@
 					},
 					"LS_RestService1_properties_typeProperties_url": {
 						"value": "[parameters('LS_RestService1_properties_typeProperties_url')]"
-					},
-					"LS_SCV_properties_typeProperties_url": {
-						"value": "[parameters('LS_SCV_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -430,6 +456,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SCV_accountKey": {
+						"value": "[parameters('LS_SCV_accountKey')]"
+					},
 					"LS_SFTP_ADLS_PRQ_accountKey": {
 						"value": "[parameters('LS_SFTP_ADLS_PRQ_accountKey')]"
 					},
@@ -441,6 +470,9 @@
 					},
 					"LS_SQL_PARQUET_accountKey": {
 						"value": "[parameters('LS_SQL_PARQUET_accountKey')]"
+					},
+					"LS_SCV_properties_typeProperties_url": {
+						"value": "[parameters('LS_SCV_properties_typeProperties_url')]"
 					},
 					"LS_SFTP_ADLS_PRQ_properties_typeProperties_url": {
 						"value": "[parameters('LS_SFTP_ADLS_PRQ_properties_typeProperties_url')]"
@@ -488,14 +520,37 @@
 					},
 					"LS_SqlServer1_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SqlServer1_properties_typeProperties_userName')]"
-					},
-					"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
-						"value": "[parameters('Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger')]"
 					}
 				}
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'ADF-VB8B-ETL-DEV001_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ADF-VB8B-ETL-DEV001_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger": {
+						"value": "[parameters('Tr_sample_csv_properties_PL1_MASTER_parameters_Trigger')]"
+					},
+					"Trigger_Excel_properties_PL1_MASTER_parameters_Trigger": {
+						"value": "[parameters('Trigger_Excel_properties_PL1_MASTER_parameters_Trigger')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADF-VB8B-ETL-DEV001_ArmTemplate_2')]"
 			]
 		}
 	]
