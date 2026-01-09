@@ -208,6 +208,9 @@
 		},
 		"Trigger_Excel_properties_PL1_MASTER_parameters_Trigger": {
 			"value": "Tr_sample_excel"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/89862172-6b63-43a0-9dc4-1d5d0b51eb76/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/blobstoragesnowflake1"
 		}
 	}
 }
